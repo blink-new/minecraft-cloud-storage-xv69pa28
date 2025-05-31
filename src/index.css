@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Minecraft-inspired color palette */
+    --background: 139 69% 19%; /* Dark wood brown */
+    --foreground: 45 29% 97%; /* Light cream */
+    --card: 30 100% 15%; /* Dark brown */
+    --card-foreground: 45 29% 97%;
+    --popover: 30 100% 15%;
+    --popover-foreground: 45 29% 97%;
+    --primary: 102 48% 48%; /* Minecraft green */
+    --primary-foreground: 45 29% 97%;
+    --secondary: 39 100% 56%; /* Gold/yellow */
+    --secondary-foreground: 30 100% 15%;
+    --muted: 30 50% 25%; /* Medium brown */
+    --muted-foreground: 45 29% 80%;
+    --accent: 0 72% 51%; /* Redstone red */
+    --accent-foreground: 45 29% 97%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 29% 97%;
+    --border: 30 50% 35%; /* Border brown */
+    --input: 30 50% 25%;
+    --ring: 102 48% 48%;
+    --chart-1: 102 48% 48%;
+    --chart-2: 39 100% 56%;
+    --chart-3: 0 72% 51%;
+    --chart-4: 240 100% 73%;
+    --chart-5: 180 100% 50%;
+    --radius: 4px;
+    --sidebar-background: 30 100% 12%;
+    --sidebar-foreground: 45 29% 90%;
+    --sidebar-primary: 102 48% 48%;
+    --sidebar-primary-foreground: 45 29% 97%;
+    --sidebar-accent: 30 50% 25%;
+    --sidebar-accent-foreground: 45 29% 90%;
+    --sidebar-border: 30 50% 30%;
+    --sidebar-ring: 102 48% 48%;
+  }
+
+  .dark {
+    --background: 30 100% 8%; /* Very dark brown */
+    --foreground: 45 29% 95%;
+    --card: 30 100% 12%;
+    --card-foreground: 45 29% 95%;
+    --popover: 30 100% 12%;
+    --popover-foreground: 45 29% 95%;
+    --primary: 102 48% 55%;
+    --primary-foreground: 30 100% 8%;
+    --secondary: 39 100% 65%;
+    --secondary-foreground: 30 100% 8%;
+    --muted: 30 50% 18%;
+    --muted-foreground: 45 29% 70%;
+    --accent: 0 72% 58%;
+    --accent-foreground: 45 29% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 29% 95%;
+    --border: 30 50% 25%;
+    --input: 30 50% 18%;
+    --ring: 102 48% 55%;
+    --chart-1: 102 48% 55%;
+    --chart-2: 39 100% 65%;
+    --chart-3: 0 72% 58%;
+    --chart-4: 240 100% 80%;
+    --chart-5: 180 100% 60%;
+    --sidebar-background: 30 100% 6%;
+    --sidebar-foreground: 45 29% 85%;
+    --sidebar-primary: 102 48% 55%;
+    --sidebar-primary-foreground: 30 100% 6%;
+    --sidebar-accent: 30 50% 15%;
+    --sidebar-accent-foreground: 45 29% 85%;
+    --sidebar-border: 30 50% 20%;
+    --sidebar-ring: 102 48% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Minecraft-inspired custom styles */
+@layer components {
+  .font-minecraft {
+    font-family: 'Press Start 2P', cursive;
+    letter-spacing: 0.1em;
+  }
+  
+  .block-button {
+    @apply relative border-4 border-solid transition-all duration-150;
+    border-top-color: hsl(var(--border));
+    border-left-color: hsl(var(--border));
+    border-right-color: hsl(var(--muted));
+    border-bottom-color: hsl(var(--muted));
+    box-shadow: 
+      inset 2px 2px 0 rgba(255, 255, 255, 0.2),
+      inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .block-button:hover {
+    transform: translate(1px, 1px);
+    box-shadow: 
+      inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+      inset -1px -1px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .block-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .minecraft-card {
+    @apply block-button bg-card;
+    background-image: 
+      linear-gradient(45deg, transparent 25%, rgba(0,0,0,0.1) 25%),
+      linear-gradient(-45deg, transparent 25%, rgba(0,0,0,0.1) 25%),
+      linear-gradient(45deg, rgba(0,0,0,0.1) 75%, transparent 75%),
+      linear-gradient(-45deg, rgba(0,0,0,0.1) 75%, transparent 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  }
+  
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  .minecraft-progress {
+    @apply bg-muted;
+    border: 2px solid hsl(var(--border));
+  }
+  
+  .minecraft-progress [data-state="complete"] {
+    @apply bg-gradient-to-r from-green-500 to-green-600;
+  }
+  
+  .minecraft-progress [data-state="loading"] {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+  }
+  
+  .minecraft-switch {
+    @apply border-2 border-border;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-none;
+  border: 2px solid hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent;
+}
